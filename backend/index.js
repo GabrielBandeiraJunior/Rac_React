@@ -22,51 +22,51 @@ db.once('open', () => {
 const UserSchema = new mongoose.Schema({
   razaoSocial: {
     type: String,
-    required: true,
+    required: false,
   },
   cnpj: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   endereco: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   numero:{
     type: String,
-    requires: false
+    requires: true,
   },
   responsavel: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   setor: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   tecnico: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   cidade: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   horaInicio: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   horaTermino: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   instalacaoDeEquipamentos: {
     type: Boolean,
