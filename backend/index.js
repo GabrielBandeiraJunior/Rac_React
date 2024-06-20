@@ -1,3 +1,5 @@
+// backend/index.js
+
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
@@ -34,7 +36,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: false,
   },
-  numero:{
+  numero: {
     type: String,
     required: true,
   },
@@ -76,11 +78,38 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     required: false,
   },
+  customizacao: {
+    type: Boolean,
+    required: false,
+  },
+  diagnosticoDeProjetos: {
+    type: Boolean,
+    required: false,
+  },
+  homologacaoDeInfra: {
+    type: Boolean,
+    required: false,
+  },
+  deslocamento: {
+    type: Boolean,
+    required: false,
+  },
+  treinamentoOperacional: {
+    type: Boolean,
+    required: false,
+  },
+  implantacaoDeSistemas: {
+    type: Boolean,
+    required: false,
+  },
+  manutencaoPreventivaContratual: {
+    type: Boolean,
+    required: false,
+  },
   repprintpoint: {
     type: Boolean,
     required: false,
   },
-  
   repminiprint: {
     type: Boolean,
     required: false,
@@ -93,6 +122,10 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     required: false,
   },
+  relogiobiopoint: {
+    type: Boolean,
+    required: false,
+  },
   catracamicropoint: {
     type: Boolean,
     required: false,
@@ -101,51 +134,54 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     required: false,
   },
-  outros: {
+  suporteTi: {
     type: Boolean,
+    required: false,
+  },
+  outros: {
+    type: String,
     required: false,
   },
   nSerie: {
-    type: Boolean,
+    type: String,
     required: false,
   },
   localInstalacao: {
-    type: Boolean,
+    type: String,
     required: false,
   },
   observacaoProblemas: {
-    type: Boolean,
+    type: String,
     required: false,
   },
   componente: {
-    type: Boolean,
+    type: String,
     required: false,
   },
   codigoComponente: {
-    type: Boolean,
+    type: String,
     required: false,
   },
   valorVisita: {
-    type: Boolean,
+    type: String,
     required: false,
   },
   valorrs: {
-    type: Boolean,
+    type: String,
     required: false,
   },
   valorPecas: {
-    type: Boolean,
+    type: String,
     required: false,
   },
   valorTotal: {
-    type: Boolean,
+    type: String,
     required: false,
   },
   observacoes: {
-    type: Boolean,
+    type: String,
     required: false,
   },
-
   date: {
     type: Date,
     default: Date.now,
@@ -161,20 +197,18 @@ app.get("/", (req, resp) => {
   resp.send("App is Working");
 });
 
-app.post("/register", async (req, resp) => {
+app.post("/racvirtual/register", async (req, resp) => {
   try {
     console.log(req.body); // Para verificar os dados recebidos
     const user = new User(req.body);
     let result = await user.save();
-    result = result.toObject();
     if (result) {
-      resp.send(req.body);
-      console.log(result);
+      resp.status(200).json({ message: "Data saved successfully", data: result });
     } else {
-      console.log("Usuário já registrado");
+      resp.status(400).json({ message: "Failed to save data" });
     }
   } catch (e) {
-    resp.status(500).send("Algo deu errado");
+    resp.status(500).json({ message: "Internal server error" });
     console.error("Erro ao salvar usuário:", e);
   }
 });

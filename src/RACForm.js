@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import './app.css';
 
-function App() {
-  
+const RACForm = () => {
   const [razaoSocial, setRazaoSocial] = useState('');
   const [cnpj, setCnpj] = useState('');
   const [endereco, setEndereco] = useState('');
@@ -42,17 +40,14 @@ function App() {
   const [valorTotal, setValorTotal] = useState('');
   const [observacoes, setObservacoes] = useState('');
 
-  // Função para lidar com o envio do formulário
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
-    // Validar campos obrigatórios
     if (!razaoSocial || !cnpj) {
       alert('Por favor, preencha Razão Social e CNPJ.');
       return;
     }
 
-    // Montar o objeto para enviar ao servidor
     const data = {
       razaoSocial,
       cnpj,
@@ -162,15 +157,14 @@ function App() {
   };
 
   return (
-    
     <div id="geral">
       <h1>RAC VIRTUAL</h1>
       <form onSubmit={handleOnSubmit}>
         <div className="form-row">
           <div className="form-column">
             <div className="form-group">
-              <input type="text" placeholder="Razão Social" value={razaoSocial} onChange={(e) => setRazaoSocial(e.target.value)} />
-              <input type="text" placeholder="CNPJ" value={cnpj} onChange={(e) => setCnpj(e.target.value)} />
+              <input type="text" placeholder="Razão Social" value={razaoSocial} onChange={(e) => setRazaoSocial(e.target.value)} required />
+              <input type="text" placeholder="CNPJ" value={cnpj} onChange={(e) => setCnpj(e.target.value)} required />
             </div>
             <div className="form-group">
               <input type="text" placeholder="Endereço" value={endereco} onChange={(e) => setEndereco(e.target.value)} />
@@ -203,11 +197,11 @@ function App() {
             <div className="form-group">
               <label htmlFor="checkbox_customizacao">Customização</label>
               <input id="checkbox_customizacao" type="checkbox" checked={customizacao} onChange={(e) => setCustomizacao(e.target.checked)} />
-              <label htmlFor="checkbox_diagnostico">Diagnóstico de projetos</label>
+              <label htmlFor="checkbox_diagnostico">Diagnóstico de Projetos</label>
               <input id="checkbox_diagnostico" type="checkbox" checked={diagnosticoDeProjetos} onChange={(e) => setDiagnosticoDeProjetos(e.target.checked)} />
             </div>
             <div className="form-group">
-              <label htmlFor="checkbox_homologacao">Homologação de Infra</label>
+              <label htmlFor="checkbox_homologacao">Homologação de Infraestrutura</label>
               <input id="checkbox_homologacao" type="checkbox" checked={homologacaoDeInfra} onChange={(e) => setHomologacaoDeInfra(e.target.checked)} />
               <label htmlFor="checkbox_deslocamento">Deslocamento</label>
               <input id="checkbox_deslocamento" type="checkbox" checked={deslocamento} onChange={(e) => setDeslocamento(e.target.checked)} />
@@ -219,85 +213,88 @@ function App() {
               <input id="checkbox_implantacao" type="checkbox" checked={implantacaoDeSistemas} onChange={(e) => setImplantacaoDeSistemas(e.target.checked)} />
             </div>
             <div className="form-group">
-              <label htmlFor="checkbox_manutencao_preventiva">Manutenção Preventiva Contratual</label>
-              <input id="checkbox_manutencao_preventiva" type="checkbox" checked={manutencaoPreventivaContratual} onChange={(e) => setManutencaoPreventivaContratual(e.target.checked)} />
+              <label htmlFor="checkbox_manutencao_contratual">Manutenção Preventiva Contratual</label>
+              <input id="checkbox_manutencao_contratual" type="checkbox" checked={manutencaoPreventivaContratual} onChange={(e) => setManutencaoPreventivaContratual(e.target.checked)} />
+            </div>
+          </div>
+          <div className="form-column">
+            <div className="form-group">
+                <h5>Relógio Ponto</h5>
+              <label htmlFor="checkbox_repprintpoint">RepPrintpoint</label>
+              <input id="checkbox_repprintpoint" type="checkbox" checked={repprintpoint} onChange={(e) => setRepPrintpoint(e.target.checked)} />
+              <label htmlFor="checkbox_repminiprint">RepMiniprint</label>
+              <input id="checkbox_repminiprint" type="checkbox" checked={repminiprint} onChange={(e) => setRepMiniprint(e.target.checked)} />
+            </div>
+            <div className="form-group">
+              <label htmlFor="checkbox_repsmart">RepSmart</label>
+              <input id="checkbox_repsmart" type="checkbox" checked={repsmart} onChange={(e) => setRepSmart(e.target.checked)} />
+              <label htmlFor="checkbox_relogiomicropoint">Relógio Micropoint</label>
+              <input id="checkbox_relogiomicropoint" type="checkbox" checked={relogiomicropoint} onChange={(e) => setRelogioMicropoint(e.target.checked)} />
+            </div>
+            <div className="form-group">
+            <h5>Relógio Ponto</h5>
+              <label htmlFor="checkbox_relogiobiopoint">Relógio Biopoint</label>
+              <input id="checkbox_relogiobiopoint" type="checkbox" checked={relogiobiopoint} onChange={(e) => setRelogioBiopoint(e.target.checked)} />
+              <label htmlFor="checkbox_catracamicropoint">Catraca Micropoint</label>
+              <input id="checkbox_catracamicropoint" type="checkbox" checked={catracamicropoint} onChange={(e) => setCatracaMicropoint(e.target.checked)} />
+            </div>
+            <div className="form-group">
+            <h5>Relógio Ponto</h5>
+              <label htmlFor="checkbox_catracabiopoint">Catraca Biopoint</label>
+              <input id="checkbox_catracabiopoint" type="checkbox" checked={catracabiopoint} onChange={(e) => setCatracaBiopoint(e.target.checked)} />
+              <h5>SUPORTE TI</h5>
+              <label htmlFor="checkbox_suporte_ti">Suporte TI</label>
+                
+              <input id="checkbox_suporte_ti" type="checkbox" checked={suporteTi} onChange={(e) => setSuporteTi(e.target.checked)} />
+            </div>
+            <div className="form-group">
+              <input type="text" placeholder="Outros" value={outros} onChange={(e) => setOutros(e.target.value)} />
+            </div>
+          </div>
+          <div className="form-column">
+            <div className="form-group">
+              <input type="text" placeholder="Nº de Série" value={nSerie} onChange={(e) => setNSerie(e.target.value)} />
+            </div>
+            <div className="form-group">
+              <input type="text" placeholder="Local de Instalação" value={localInstalacao} onChange={(e) => setLocalInstalacao(e.target.value)} />
+            </div>
+            <div className="form-group">
+              <textarea placeholder="Observações/Problemas" value={observacaoProblemas} onChange={(e) => setObservacaoProblemas(e.target.value)} />
+            </div>
+            <div className="form-group">
+              <input type="text" placeholder="Componente" value={componente} onChange={(e) => setComponente(e.target.value)} />
+            </div>
+            <div className="form-group">
+              <input type="text" placeholder="Código do Componente" value={codigoComponente} onChange={(e) => setCodigoComponente(e.target.value)} />
+            </div>
+            <div className="form-group">
+              
+              <input id="valor_visita" placeholder="Valor da Visita"   type="text" value={valorVisita} onChange={(e) => setValorVisita(e.target.value)} />
+            </div>
+            <div className="form-group">
+              
+              <input id="valor_rs" type="text" placeholder="Valor (R$)" value={valorrs} onChange={(e) => setValorRS(e.target.value)} />
+            </div>
+            <div className="form-group">
+              
+              <input id="valor_pecas" type="text" placeholder="Valor das Peças" value={valorPecas} onChange={(e) => setValorPecas(e.target.value)} />
+            </div>
+            <div className="form-group">
+              
+              <input id="valor_total" type="text" placeholder="Valor Total" value={valorTotal} onChange={(e) => setValorTotal(e.target.value)} />
+            </div>
+            <div className="form-group">
+              <textarea placeholder="Observações" value={observacoes} onChange={(e) => setObservacoes(e.target.value)} />
             </div>
           </div>
         </div>
-
-        <div>
-          <h2>DESCRIÇÃO DO ATENDIMENTO</h2>
-          <h3>EQUIPAMENTO</h3>
+        <div className="form-row">
+          <button type="submit">Enviar</button>
+          <button type="button" onClick={clearForm}>Limpar</button>
         </div>
-
-        <div>
-          <h4>REP.</h4>
-          <div className="form-group">
-            <label htmlFor="checkbox_repprintpoint">Printpoint</label>
-            <input id="checkbox_repprintpoint" type="checkbox" checked={repprintpoint} onChange={(e) => setRepPrintpoint(e.target.checked)} />
-
-            <label htmlFor="checkbox_repminiprint">Miniprint</label>
-            <input id="checkbox_repminiprint" type="checkbox" checked={repminiprint} onChange={(e) => setRepMiniprint(e.target.checked)} />
-
-            <label htmlFor="checkbox_repsmart">Smart</label>
-            <input id="checkbox_repsmart" type="checkbox" checked={repsmart} onChange={(e) => setRepSmart(e.target.checked)} />
-          </div>
-          <br />
-          <h4>RELÓGIO</h4>
-          <div className="form-group">
-            <label htmlFor="checkbox_relogiomicropoint">Micropoint</label>
-            <input id="checkbox_relogiomicropoint" type="checkbox" checked={relogiomicropoint} onChange={(e) => setRelogioMicropoint(e.target.checked)} />
-
-            <label htmlFor="checkbox_relogiobiopoint">Biopoint</label>
-            <input id="checkbox_relogiobiopoint" type="checkbox" checked={relogiobiopoint} onChange={(e) => setRelogioBiopoint(e.target.checked)} />
-          </div>
-          <br />
-          <h4>CATRACA</h4>
-          <div className="form-group">
-            <label htmlFor="checkbox_catracamicropoint">Micropoint</label>
-            <input id="checkbox_catracamicropoint" type="checkbox" checked={catracamicropoint} onChange={(e) => setCatracaMicropoint(e.target.checked)} />
-
-            <label htmlFor="checkbox_catracabiopoint">Biopoint</label>
-            <input id="checkbox_catracabiopoint" type="checkbox" checked={catracabiopoint} onChange={(e) => setCatracaBiopoint(e.target.checked)} />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="checkbox_suporteTi">SUPORTE TI/INFORMÁTICA</label>
-            <input id="checkbox_suporteTi" type="checkbox" checked={suporteTi} onChange={(e) => setSuporteTi(e.target.checked)} />
-
-            <label htmlFor="input_outros">Outros</label>
-            <input id="input_outros" type="text" value={outros} onChange={(e) => setOutros(e.target.value)} />
-          </div>
-          
-          <div className="form-group">
-            <input type="text" placeholder="N° de Série" value={nSerie} onChange={(e) => setNSerie(e.target.value)} />
-            <input type="text" placeholder="Local de Instalação" value={localInstalacao} onChange={(e) => setLocalInstalacao(e.target.value)} />
-          </div>
-          
-          <input type="text" placeholder="Observações/Problemas Diagnósticados" value={observacaoProblemas} onChange={(e) => setObservacaoProblemas(e.target.value)} />
-
-          <h4>Troca de Componentes em Equipamentos</h4>
-          <div className="form-group">
-            <input type="text" placeholder="Componente" value={componente} onChange={(e) => setComponente(e.target.value)} />
-            
-            <input type="text" placeholder="Código Componente" value={codigoComponente} onChange={(e) => setCodigoComponente(e.target.value)} />
-          </div>
-          <div className="form-group">
-            <input type="text" placeholder="Valor Visita" value={valorVisita} onChange={(e) => setValorVisita(e.target.value)} />
-            <input type="text" placeholder="Valor R$" value={valorrs} onChange={(e) => setValorRS(e.target.value)} />
-          </div>
-          
-          <div className="form-group">
-            <input type="text" placeholder="Valor Peças" value={valorPecas} onChange={(e) => setValorPecas(e.target.value)} />
-            <input type="text" placeholder="Valor Total" value={valorTotal} onChange={(e) => setValorTotal(e.target.value)} />
-          </div>
-          
-          <input type="text" placeholder="Observações" value={observacoes} onChange={(e) => setObservacoes(e.target.value)} />
-        </div>
-        <button id="enviar" type="submit">ENVIAR</button>
       </form>
     </div>
   );
-}
+};
 
-export default App;
+export default RACForm;
