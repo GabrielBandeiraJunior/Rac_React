@@ -6,7 +6,7 @@ const app = express();
 const port = 5000;
 
 // Configuração do MongoDB
-mongoose.connect('mongodb://localhost:27017/testereactDB', {
+mongoose.connect('mongodb://localhost:27017/RacsDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -36,7 +36,7 @@ const UserSchema = new mongoose.Schema({
   },
   numero:{
     type: String,
-    requires: true,
+    required: true,
   },
   responsavel: {
     type: String,
@@ -76,11 +76,76 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     required: false,
   },
-  manutencaoPreventivaContratual: {
+  repprintpoint: {
     type: Boolean,
     required: false,
   },
   
+  repminiprint: {
+    type: Boolean,
+    required: false,
+  },
+  repsmart: {
+    type: Boolean,
+    required: false,
+  },
+  relogiomicropoint: {
+    type: Boolean,
+    required: false,
+  },
+  catracamicropoint: {
+    type: Boolean,
+    required: false,
+  },
+  catracabiopoint: {
+    type: Boolean,
+    required: false,
+  },
+  outros: {
+    type: Boolean,
+    required: false,
+  },
+  nSerie: {
+    type: Boolean,
+    required: false,
+  },
+  localInstalacao: {
+    type: Boolean,
+    required: false,
+  },
+  observacaoProblemas: {
+    type: Boolean,
+    required: false,
+  },
+  componente: {
+    type: Boolean,
+    required: false,
+  },
+  codigoComponente: {
+    type: Boolean,
+    required: false,
+  },
+  valorVisita: {
+    type: Boolean,
+    required: false,
+  },
+  valorrs: {
+    type: Boolean,
+    required: false,
+  },
+  valorPecas: {
+    type: Boolean,
+    required: false,
+  },
+  valorTotal: {
+    type: Boolean,
+    required: false,
+  },
+  observacoes: {
+    type: Boolean,
+    required: false,
+  },
+
   date: {
     type: Date,
     default: Date.now,
