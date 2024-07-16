@@ -1,5 +1,3 @@
-// backend/index.js
-
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
@@ -17,11 +15,15 @@ const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'Erro de conexão com o MongoDB:'));
 db.once('open', () => {
-  console.log('Conectado ao banco de dados MongoDB');
+  console.log('RACS Conectado ao banco de dados MongoDB');
 });
 
-// Definição do Schema
 const UserSchema = new mongoose.Schema({
+  tecnico: {
+    type: String,
+    required: true,
+    unique: false,
+  },
   razaoSocial: {
     type: String,
     required: false,
@@ -50,11 +52,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: false,
   },
-  tecnico: {
-    type: String,
-    required: true,
-    unique: false,
-  },
+  
   cidade: {
     type: String,
     required: true,
